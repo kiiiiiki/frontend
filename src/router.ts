@@ -3,6 +3,7 @@ import Home from './components/Home.vue';
 import Location from './components/Location.vue';
 import Selection from './components/Selection.vue';
 import User from './components/User.vue';
+import Main from './components/Main.vue';
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/user',
     name: 'User',
     component: User,
+  },
+  {
+    path: '/main',
+    name: 'Main',
+    component: Main,
   },
 ];
 

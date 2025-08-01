@@ -67,8 +67,8 @@ function goBack() {
 }
 
 function onStartClick() {
-  // TODO: Implement main app start action
-  router.push('/')
+  // Navigate to main app screen
+  router.push('/main')
 }
 </script>
 
