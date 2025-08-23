@@ -1,0 +1,201 @@
+{
+  "common": {
+    "back": "Terug",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "close": "Sluiten",
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes"
+  },
+  "app": {
+    "name": "SAJA",
+    "subtitle": "Multimodale AI Service",
+    "description": "Sound Assistant Generative AI",
+    "tagline": "Uw AI-assistent voor weer, gezondheid, planning, financiën, nieuws en dieetbeheer"
+  },
+  "auth": {
+    "welcome": "Welkom!",
+    "login": "Inloggen",
+    "loginSubtitle": "Log in voor gepersonaliseerde services",
+    "signup": "Registreren",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord"
+  },
+  "onboarding": {
+    "languageTitle": "Kies uw voorkeurstaal",
+    "languageSubtitle": "We geven antwoorden in uw geselecteerde taal",
+    "permissionTitle": "Sta toestemmingen toe",
+    "permissionSubtitle": "Gepersonaliseerde planning, dieet, weer, nieuws en gezondheid in één!",
+    "usernameTitle": "Bijna klaar!",
+    "usernameSubtitle": "Vertel ons uw naam",
+    "next": "Volgende",
+    "fullName": "Volledige naam",
+    "username": "Gebruikersnaam"
+  },
+  "permissions": {
+    "healthInfo": "Persoonlijke gezondheidsinformatie",
+    "financialInfo": "Persoonlijke financiële informatie (Budget/Uitgavenpatronen)",
+    "calendarLocation": "Agenda, Locatie, Profiel",
+    "socialAccounts": "Sociale media integratie"
+  },
+  "navigation": {
+    "home": "Home",
+    "voice": "Spraak",
+    "settings": "Instellingen"
+  },
+  "home": {
+    "weather": {
+      "cloudy": "Bewolkt",
+      "sunny": "Zonnig",
+      "rainy": "Regenachtig",
+      "compared": "vs voorspelling"
+    },
+    "calendar": {
+      "noSchedule": "Geen evenementen",
+      "vacation": "Vakantie"
+    },
+    "medicine": {
+      "reminder": "Medicatie herinnering"
+    }
+  },
+  "settings": {
+    "title": "Instellingen",
+    "profile": "Profiel bewerken",
+    "reports": "Opgeslagen dagelijkse rapporten",
+    "integrations": "Integraties/Toestemmingen",
+    "security": "Beveiliging/Beleid",
+    "sharing": "Delen",
+    "notifications": "Meldingscentrum",
+    "language": "Taal wijzigen"
+  },
+  "profile": {
+    "edit": "Profiel bewerken",
+    "name": "Naam",
+    "username": "Gebruikersnaam",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "dangerZone": "Gevarenzone",
+    "deleteAccount": "Account verwijderen",
+    "deleteConfirm": "Weet u zeker dat u uw account wilt verwijderen?",
+    "deleteWarning": "Deze actie kan niet ongedaan worden gemaakt. Al uw gegevens worden permanent verwijderd.",
+    "saved": "Profiel is succesvol opgeslagen."
+  },
+  "reports": {
+    "title": "Opgeslagen dagelijkse rapporten",
+    "totalReports": "Totaal rapporten",
+    "thisMonth": "Deze maand",
+    "averageScore": "Gemiddelde score",
+    "search": "Rapporten zoeken...",
+    "empty": "Geen opgeslagen rapporten",
+    "emptyDescription": "Dagelijkse gezondheids- en activiteitsrapporten worden automatisch hier opgeslagen.",
+    "filter": "Rapport filter",
+    "period": "Periode",
+    "all": "Alle",
+    "week": "Afgelopen week",
+    "month": "Afgelopen maand",
+    "3months": "Afgelopen 3 maanden",
+    "scoreRange": "Score bereik",
+    "category": "Categorie",
+    "apply": "Toepassen",
+    "reset": "Reset"
+  },
+  "integrations": {
+    "title": "Integraties/Toestemmingen",
+    "permissions": "Toestemmingsstatus",
+    "connectedServices": "Verbonden services",
+    "availableServices": "Beschikbare services",
+    "dataUsage": "Datagebruik",
+    "connect": "Verbinden",
+    "disconnect": "Verbinding verbreken",
+    "configure": "Configureren",
+    "allowed": "Toegestaan",
+    "denied": "Geweigerd",
+    "help": "Toestemmingen & Integraties hulp",
+    "helpContent": {
+      "permissions": "Toestemmingen staan de app toe om toegang te krijgen tot uw persoonlijke informatie. U kunt deze altijd wijzigen.",
+      "security": "Alle integratieservices zijn veilig beschermd met OAuth 2.0 standaard.",
+      "privacy": "Persoonlijke gegevens worden versleuteld en veilig opgeslagen, nooit gedeeld met derden."
+    }
+  },
+  "language": {
+    "title": "Taal wijzigen",
+    "current": "Huidige taal",
+    "available": "Beschikbare talen",
+    "features": "Taalfuncties",
+    "settings": "Taalinstellingen",
+    "offlinePacks": "Offline taalpakketten",
+    "packDescription": "Download taalpakketten om te gebruiken zonder internetverbinding.",
+    "download": "Downloaden",
+    "downloaded": "Gedownload",
+    "downloading": "Downloaden",
+    "comingSoon": "Binnenkort",
+    "reset": "Reset",
+    "saveChanges": "Wijzigingen opslaan",
+    "restartNote": "De app wordt opnieuw gestart wanneer u de taal wijzigt.",
+    "saved": "Taalinstellingen opgeslagen. App opnieuw opstarten...",
+    "features": {
+      "voiceRecognition": "Spraakherkenning",
+      "voiceDescription": "Natuurlijke spraakopdrachten",
+      "aiChat": "AI gesprek",
+      "aiDescription": "Contextbewuste dialoog",
+      "localInfo": "Lokale informatie",
+      "localDescription": "Gelokaliseerde inhoud",
+      "dateFormat": "Datumformaat",
+      "dateDescription": "Regionale datumweergave"
+    },
+    "settings": {
+      "autoTranslate": "Automatisch vertalen",
+      "autoTranslateDesc": "Automatisch vertalen van vreemde taalinhoud",
+      "pronunciationHelp": "Uitspraakhulp",
+      "pronunciationDesc": "Uitspraakgids voor moeilijke woorden",
+      "dialectSupport": "Regionaal dialect",
+      "dialectDesc": "Gebruik regiospecifieke uitdrukkingen"
+    }
+  },
+  "voice": {
+    "listening": "Luisteren...",
+    "startListening": "Start spraakherkenning",
+    "llmSearching": "LLM zoekt"
+  },
+  "health": {
+    "title": "Gezondheidsaanbevelingen",
+    "diseases": "Mijn medische aandoeningen",
+    "weekHistory": "Weekgeschiedenis",
+    "recommend": "Aanbevelingen"
+  },
+  "finance": {
+    "title": "Mijn financiën",
+    "budgetTrend": "Budgettrend",
+    "deposits": "Deposito's/Fondsen/Onroerend goed",
+    "riskAssets": "Risico-activa"
+  },
+  "news": {
+    "title": "Nieuwsfeed",
+    "todayNews": "Vandaag het nieuws",
+    "comments": "Reacties",
+    "likes": "Likes",
+    "share": "Delen",
+    "writeComment": "Schrijf reactie..."
+  },
+  "calendar": {
+    "title": "Planningbeheer",
+    "events": {
+      "vacation": "Zomervakantie",
+      "deadline": "Project deadline",
+      "workshop": "Workshop"
+    }
+  },
+  "validation": {
+    "required": "{field} is verplicht.",
+    "minLength": "{field} moet minimaal {length} tekens lang zijn.",
+    "maxLength": "{field} kan maximaal {length} tekens lang zijn.",
+    "invalidFormat": "{field} formaat is ongeldig.",
+    "invalidEmail": "Voer een geldig e-mailadres in.",
+    "invalidPhone": "Voer een geldig telefoonnummer in."
+  }
+}

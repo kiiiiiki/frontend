@@ -1,0 +1,201 @@
+{
+  "common": {
+    "back": "뒤로",
+    "save": "저장",
+    "cancel": "취소",
+    "confirm": "확인",
+    "delete": "삭제",
+    "edit": "편집",
+    "close": "닫기",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공"
+  },
+  "app": {
+    "name": "사자",
+    "subtitle": "멀티모달 AI 서비스",
+    "description": "Sound Assistant Generative AI",
+    "tagline": "날씨 · 건강 · 일정 · 금융 · 뉴스 · 식단까지, 일상을 한 번에 관리하는 AI 비서"
+  },
+  "auth": {
+    "welcome": "어서오세요!",
+    "login": "로그인",
+    "loginSubtitle": "개인화 서비스를 위해 로그인 해주세요",
+    "signup": "회원가입 하기",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "username": "사용자명",
+    "password": "비밀번호"
+  },
+  "onboarding": {
+    "languageTitle": "선호 언어를 선택해주세요",
+    "languageSubtitle": "언어에 맞는 응답을 드릴게요",
+    "permissionTitle": "권한을 허용해주세요",
+    "permissionSubtitle": "개인화 일정, 식단, 날씨, 뉴스, 건강을 한번에!",
+    "usernameTitle": "거의 다 왔어요!",
+    "usernameSubtitle": "이름을 알려주세요",
+    "next": "다음",
+    "fullName": "이름",
+    "username": "사용자명"
+  },
+  "permissions": {
+    "healthInfo": "개인 건강정보",
+    "financialInfo": "개인 금융정보(예산/소비패턴)",
+    "calendarLocation": "캘린더, 위치, 프로필",
+    "socialAccounts": "소셜 계정 연동"
+  },
+  "navigation": {
+    "home": "홈",
+    "voice": "음성인식",
+    "settings": "설정"
+  },
+  "home": {
+    "weather": {
+      "cloudy": "구름 많음",
+      "sunny": "맑음",
+      "rainy": "비",
+      "compared": "예보보다"
+    },
+    "calendar": {
+      "noSchedule": "일정 없음",
+      "vacation": "휴가"
+    },
+    "medicine": {
+      "reminder": "복용약 리마인더"
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "profile": "프로필 수정",
+    "reports": "저장된 일일 보고서",
+    "integrations": "연동/권한 관리",
+    "security": "보안/정책",
+    "sharing": "공유",
+    "notifications": "알림 센터",
+    "language": "언어 변경하기"
+  },
+  "profile": {
+    "edit": "프로필 수정",
+    "name": "이름",
+    "username": "사용자명",
+    "phone": "전화번호",
+    "email": "이메일",
+    "dangerZone": "위험 구역",
+    "deleteAccount": "계정 삭제",
+    "deleteConfirm": "계정을 정말 삭제하시겠습니까?",
+    "deleteWarning": "이 작업은 되돌릴 수 없습니다. 모든 데이터가 영구적으로 삭제됩니다.",
+    "saved": "프로필이 성공적으로 저장되었습니다."
+  },
+  "reports": {
+    "title": "저장된 일일 보고서",
+    "totalReports": "총 보고서",
+    "thisMonth": "이번 달",
+    "averageScore": "평균 점수",
+    "search": "보고서 검색...",
+    "empty": "저장된 보고서가 없습니다",
+    "emptyDescription": "일일 건강 및 활동 보고서가 자동으로 여기에 저장됩니다.",
+    "filter": "보고서 필터",
+    "period": "기간",
+    "all": "전체",
+    "week": "최근 1주일",
+    "month": "최근 1개월",
+    "3months": "최근 3개월",
+    "scoreRange": "점수 범위",
+    "category": "카테고리",
+    "apply": "적용",
+    "reset": "초기화"
+  },
+  "integrations": {
+    "title": "연동/권한 관리",
+    "permissions": "권한 상태",
+    "connectedServices": "연동된 서비스",
+    "availableServices": "연동 가능한 서비스",
+    "dataUsage": "데이터 사용량",
+    "connect": "연동하기",
+    "disconnect": "연동 해제",
+    "configure": "설정",
+    "allowed": "허용됨",
+    "denied": "거부됨",
+    "help": "권한 및 연동 도움말",
+    "helpContent": {
+      "permissions": "앱이 귀하의 개인 정보에 접근할 수 있는 허가입니다. 언제든지 변경할 수 있습니다.",
+      "security": "모든 연동 서비스는 OAuth 2.0 표준을 사용하여 안전하게 보호됩니다.",
+      "privacy": "개인 데이터는 암호화되어 저장되며, 제3자와 공유되지 않습니다."
+    }
+  },
+  "language": {
+    "title": "언어 변경하기",
+    "current": "현재 언어",
+    "available": "사용 가능한 언어",
+    "features": "언어별 지원 기능",
+    "settings": "언어 설정",
+    "offlinePacks": "오프라인 언어팩",
+    "packDescription": "인터넷 연결 없이도 사용할 수 있는 언어팩을 다운로드하세요.",
+    "download": "다운로드",
+    "downloaded": "완료",
+    "downloading": "다운로드 중",
+    "comingSoon": "곧 출시",
+    "reset": "초기화",
+    "saveChanges": "변경사항 저장",
+    "restartNote": "언어를 변경하면 앱이 다시 시작됩니다.",
+    "saved": "언어 설정이 저장되었습니다. 앱을 다시 시작합니다.",
+    "features": {
+      "voiceRecognition": "음성 인식",
+      "voiceDescription": "자연스러운 음성 명령",
+      "aiChat": "AI 대화",
+      "aiDescription": "맥락을 이해하는 대화",
+      "localInfo": "지역 정보",
+      "localDescription": "현지화된 콘텐츠",
+      "dateFormat": "날짜 형식",
+      "dateDescription": "지역별 날짜 표시"
+    },
+    "settings": {
+      "autoTranslate": "자동 번역",
+      "autoTranslateDesc": "외국어 콘텐츠 자동 번역",
+      "pronunciationHelp": "발음 도움말",
+      "pronunciationDesc": "어려운 단어 발음 가이드",
+      "dialectSupport": "지역 방언",
+      "dialectDesc": "지역별 특색있는 표현 사용"
+    }
+  },
+  "voice": {
+    "listening": "음성 인식 중...",
+    "startListening": "음성 인식 시작하기",
+    "llmSearching": "LLM이 탐색중"
+  },
+  "health": {
+    "title": "건강 추천",
+    "diseases": "나의 기저질환",
+    "weekHistory": "Week History",
+    "recommend": "Recommend"
+  },
+  "finance": {
+    "title": "My 금융",
+    "budgetTrend": "예산 상승 추이",
+    "deposits": "예금/펀드/주택자산",
+    "riskAssets": "위험 자산"
+  },
+  "news": {
+    "title": "뉴스피드",
+    "todayNews": "오늘의 뉴스",
+    "comments": "Comments",
+    "likes": "Likes",
+    "share": "Share",
+    "writeComment": "Write comment..."
+  },
+  "calendar": {
+    "title": "일정 관리",
+    "events": {
+      "vacation": "여름휴가",
+      "deadline": "프로젝트 마감기한",
+      "workshop": "워크샵"
+    }
+  },
+  "validation": {
+    "required": "{field}은(는) 필수입니다.",
+    "minLength": "{field}은(는) 최소 {length}자 이상이어야 합니다.",
+    "maxLength": "{field}은(는) 최대 {length}자까지 입력 가능합니다.",
+    "invalidFormat": "{field}의 형식이 올바르지 않습니다.",
+    "invalidEmail": "올바른 이메일 주소를 입력해주세요.",
+    "invalidPhone": "올바른 전화번호를 입력해주세요."
+  }
+}

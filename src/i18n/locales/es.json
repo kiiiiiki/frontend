@@ -1,0 +1,201 @@
+{
+  "common": {
+    "back": "Atrás",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "app": {
+    "name": "SAJA",
+    "subtitle": "Servicio de IA Multimodal",
+    "description": "Sound Assistant Generative AI",
+    "tagline": "Tu asistente de IA para clima, salud, horarios, finanzas, noticias y gestión de dieta"
+  },
+  "auth": {
+    "welcome": "¡Bienvenido!",
+    "login": "Iniciar sesión",
+    "loginSubtitle": "Inicia sesión para servicios personalizados",
+    "signup": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "username": "Nombre de usuario",
+    "password": "Contraseña"
+  },
+  "onboarding": {
+    "languageTitle": "Elige tu idioma preferido",
+    "languageSubtitle": "Proporcionaremos respuestas en tu idioma seleccionado",
+    "permissionTitle": "Por favor permite los permisos",
+    "permissionSubtitle": "¡Horarios personalizados, dieta, clima, noticias y salud todo en uno!",
+    "usernameTitle": "¡Casi terminamos!",
+    "usernameSubtitle": "Por favor dinos tu nombre",
+    "next": "Siguiente",
+    "fullName": "Nombre completo",
+    "username": "Nombre de usuario"
+  },
+  "permissions": {
+    "healthInfo": "Información personal de salud",
+    "financialInfo": "Información financiera personal (Presupuesto/Patrones de gasto)",
+    "calendarLocation": "Calendario, Ubicación, Perfil",
+    "socialAccounts": "Integración de redes sociales"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "voice": "Voz",
+    "settings": "Configuración"
+  },
+  "home": {
+    "weather": {
+      "cloudy": "Nublado",
+      "sunny": "Soleado",
+      "rainy": "Lluvioso",
+      "compared": "vs pronóstico"
+    },
+    "calendar": {
+      "noSchedule": "Sin eventos",
+      "vacation": "Vacaciones"
+    },
+    "medicine": {
+      "reminder": "Recordatorio de medicación"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "profile": "Editar perfil",
+    "reports": "Informes diarios guardados",
+    "integrations": "Integraciones/Permisos",
+    "security": "Seguridad/Política",
+    "sharing": "Compartir",
+    "notifications": "Centro de notificaciones",
+    "language": "Cambiar idioma"
+  },
+  "profile": {
+    "edit": "Editar perfil",
+    "name": "Nombre",
+    "username": "Nombre de usuario",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "dangerZone": "Zona de peligro",
+    "deleteAccount": "Eliminar cuenta",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar tu cuenta?",
+    "deleteWarning": "Esta acción no se puede deshacer. Todos tus datos serán eliminados permanentemente.",
+    "saved": "El perfil se ha guardado exitosamente."
+  },
+  "reports": {
+    "title": "Informes diarios guardados",
+    "totalReports": "Total de informes",
+    "thisMonth": "Este mes",
+    "averageScore": "Puntuación promedio",
+    "search": "Buscar informes...",
+    "empty": "No hay informes guardados",
+    "emptyDescription": "Los informes diarios de salud y actividad se guardarán automáticamente aquí.",
+    "filter": "Filtro de informes",
+    "period": "Período",
+    "all": "Todos",
+    "week": "Última semana",
+    "month": "Último mes",
+    "3months": "Últimos 3 meses",
+    "scoreRange": "Rango de puntuación",
+    "category": "Categoría",
+    "apply": "Aplicar",
+    "reset": "Reiniciar"
+  },
+  "integrations": {
+    "title": "Integraciones/Permisos",
+    "permissions": "Estado de permisos",
+    "connectedServices": "Servicios conectados",
+    "availableServices": "Servicios disponibles",
+    "dataUsage": "Uso de datos",
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "configure": "Configurar",
+    "allowed": "Permitido",
+    "denied": "Denegado",
+    "help": "Ayuda de permisos e integraciones",
+    "helpContent": {
+      "permissions": "Los permisos permiten que la aplicación acceda a tu información personal. Puedes cambiarlos en cualquier momento.",
+      "security": "Todos los servicios de integración están protegidos de forma segura usando el estándar OAuth 2.0.",
+      "privacy": "Los datos personales se cifran y almacenan de forma segura, nunca se comparten con terceros."
+    }
+  },
+  "language": {
+    "title": "Cambiar idioma",
+    "current": "Idioma actual",
+    "available": "Idiomas disponibles",
+    "features": "Funciones de idioma",
+    "settings": "Configuración de idioma",
+    "offlinePacks": "Paquetes de idioma sin conexión",
+    "packDescription": "Descarga paquetes de idioma para usar sin conexión a internet.",
+    "download": "Descargar",
+    "downloaded": "Descargado",
+    "downloading": "Descargando",
+    "comingSoon": "Próximamente",
+    "reset": "Reiniciar",
+    "saveChanges": "Guardar cambios",
+    "restartNote": "La aplicación se reiniciará cuando cambies el idioma.",
+    "saved": "Configuración de idioma guardada. Reiniciando aplicación...",
+    "features": {
+      "voiceRecognition": "Reconocimiento de voz",
+      "voiceDescription": "Comandos de voz naturales",
+      "aiChat": "Conversación con IA",
+      "aiDescription": "Diálogo consciente del contexto",
+      "localInfo": "Información local",
+      "localDescription": "Contenido localizado",
+      "dateFormat": "Formato de fecha",
+      "dateDescription": "Visualización de fecha regional"
+    },
+    "settings": {
+      "autoTranslate": "Traducción automática",
+      "autoTranslateDesc": "Traducir automáticamente contenido en idioma extranjero",
+      "pronunciationHelp": "Ayuda de pronunciación",
+      "pronunciationDesc": "Guía de pronunciación para palabras difíciles",
+      "dialectSupport": "Dialecto regional",
+      "dialectDesc": "Usar expresiones específicas de la región"
+    }
+  },
+  "voice": {
+    "listening": "Escuchando...",
+    "startListening": "Iniciar reconocimiento de voz",
+    "llmSearching": "LLM buscando"
+  },
+  "health": {
+    "title": "Recomendaciones de salud",
+    "diseases": "Mis condiciones médicas",
+    "weekHistory": "Historial de la semana",
+    "recommend": "Recomendaciones"
+  },
+  "finance": {
+    "title": "Mis finanzas",
+    "budgetTrend": "Tendencia del presupuesto",
+    "deposits": "Depósitos/Fondos/Bienes raíces",
+    "riskAssets": "Activos de riesgo"
+  },
+  "news": {
+    "title": "Feed de noticias",
+    "todayNews": "Noticias de hoy",
+    "comments": "Comentarios",
+    "likes": "Me gusta",
+    "share": "Compartir",
+    "writeComment": "Escribir comentario..."
+  },
+  "calendar": {
+    "title": "Gestión de horarios",
+    "events": {
+      "vacation": "Vacaciones de verano",
+      "deadline": "Fecha límite del proyecto",
+      "workshop": "Taller"
+    }
+  },
+  "validation": {
+    "required": "{field} es obligatorio.",
+    "minLength": "{field} debe tener al menos {length} caracteres.",
+    "maxLength": "{field} puede tener hasta {length} caracteres.",
+    "invalidFormat": "El formato de {field} es inválido.",
+    "invalidEmail": "Por favor ingresa una dirección de correo electrónico válida.",
+    "invalidPhone": "Por favor ingresa un número de teléfono válido."
+  }
+}

@@ -30,17 +30,17 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useNavigation } from '../composables/useRouter'
+import { useUserStore } from '../stores/user'
+import { ROUTES } from '../constants/routes'
 
-const router = useRouter()
-const selectedLanguage = ref('nl')
-
-const goBack = () => {
-  router.back()
-}
+const { goBack, goTo } = useNavigation()
+const userStore = useUserStore()
+const selectedLanguage = ref(userStore.userSettings.selectedLanguage)
 
 const goNext = () => {
-  router.push('/permission')
+  userStore.setLanguage(selectedLanguage.value)
+  goTo(ROUTES.PERMISSION)
 }
 </script>
 

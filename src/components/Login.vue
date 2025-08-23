@@ -18,7 +18,7 @@
         <span class="icon">
           <i class="fas fa-user"></i>
         </span>
-        <input type="text" placeholder="Austin" />
+        <input type="text" placeholder="Austin" v-model="username" />
       </div>
 
       <!-- 비밀번호 -->
@@ -26,7 +26,7 @@
         <span class="icon">
           <i class="fas fa-lock"></i>
         </span>
-        <input type="password" placeholder="●●●●●●" />
+        <input type="password" placeholder="●●●●●●" v-model="password" />
         <span class="eye-toggle">
           <i class="fas fa-eye"></i>
         </span>
@@ -46,21 +46,30 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useNavigation } from '../composables/useRouter'
+import { useUserStore } from '../stores/user'
+import { ROUTES } from '../constants/routes'
 
-const router = useRouter()
+const { goTo } = useNavigation()
+const userStore = useUserStore()
+
+const username = ref('')
+const password = ref('')
 
 const gotoSignUp = () => {
-  router.push('/selection')
+  goTo(ROUTES.SELECTION)
 }
 
-const goToMainHome = () => {
-  router.push('/main_home')
+const goToMainHome = async () => {
+  if (username.value && password.value) {
+    await userStore.login(username.value, password.value)
+    goTo(ROUTES.MAIN_HOME)
+  }
 }
 </script>
 
 <style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 .login-page {
   background-color: #0f1e25;

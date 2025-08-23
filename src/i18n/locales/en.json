@@ -1,0 +1,201 @@
+{
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "app": {
+    "name": "SAJA",
+    "subtitle": "Multimodal AI Service",
+    "description": "Sound Assistant Generative AI",
+    "tagline": "Your AI assistant for weather, health, schedule, finance, news, and diet management"
+  },
+  "auth": {
+    "welcome": "Welcome!",
+    "login": "Login",
+    "loginSubtitle": "Please log in for personalized services",
+    "signup": "Sign Up",
+    "forgotPassword": "Forgot password?",
+    "username": "Username",
+    "password": "Password"
+  },
+  "onboarding": {
+    "languageTitle": "Choose your preferred language",
+    "languageSubtitle": "We'll provide responses in your selected language",
+    "permissionTitle": "Please allow permissions",
+    "permissionSubtitle": "Personalized schedule, diet, weather, news, and health all in one!",
+    "usernameTitle": "Almost there!",
+    "usernameSubtitle": "Please tell us your name",
+    "next": "Next",
+    "fullName": "Full Name",
+    "username": "Username"
+  },
+  "permissions": {
+    "healthInfo": "Personal Health Information",
+    "financialInfo": "Personal Financial Information (Budget/Spending Patterns)",
+    "calendarLocation": "Calendar, Location, Profile",
+    "socialAccounts": "Social Account Integration"
+  },
+  "navigation": {
+    "home": "Home",
+    "voice": "Voice",
+    "settings": "Settings"
+  },
+  "home": {
+    "weather": {
+      "cloudy": "Cloudy",
+      "sunny": "Sunny",
+      "rainy": "Rainy",
+      "compared": "vs forecast"
+    },
+    "calendar": {
+      "noSchedule": "No events",
+      "vacation": "Vacation"
+    },
+    "medicine": {
+      "reminder": "Medication Reminder"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Edit Profile",
+    "reports": "Saved Daily Reports",
+    "integrations": "Integrations/Permissions",
+    "security": "Security/Policy",
+    "sharing": "Sharing",
+    "notifications": "Notification Center",
+    "language": "Change Language"
+  },
+  "profile": {
+    "edit": "Edit Profile",
+    "name": "Name",
+    "username": "Username",
+    "phone": "Phone",
+    "email": "Email",
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteConfirm": "Are you sure you want to delete your account?",
+    "deleteWarning": "This action cannot be undone. All your data will be permanently deleted.",
+    "saved": "Profile has been saved successfully."
+  },
+  "reports": {
+    "title": "Saved Daily Reports",
+    "totalReports": "Total Reports",
+    "thisMonth": "This Month",
+    "averageScore": "Average Score",
+    "search": "Search reports...",
+    "empty": "No saved reports",
+    "emptyDescription": "Daily health and activity reports will be automatically saved here.",
+    "filter": "Report Filter",
+    "period": "Period",
+    "all": "All",
+    "week": "Last Week",
+    "month": "Last Month",
+    "3months": "Last 3 Months",
+    "scoreRange": "Score Range",
+    "category": "Category",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "integrations": {
+    "title": "Integrations/Permissions",
+    "permissions": "Permission Status",
+    "connectedServices": "Connected Services",
+    "availableServices": "Available Services",
+    "dataUsage": "Data Usage",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "configure": "Configure",
+    "allowed": "Allowed",
+    "denied": "Denied",
+    "help": "Permissions & Integrations Help",
+    "helpContent": {
+      "permissions": "Permissions allow the app to access your personal information. You can change them anytime.",
+      "security": "All integration services are securely protected using OAuth 2.0 standard.",
+      "privacy": "Personal data is encrypted and stored securely, never shared with third parties."
+    }
+  },
+  "language": {
+    "title": "Change Language",
+    "current": "Current Language",
+    "available": "Available Languages",
+    "features": "Language Features",
+    "settings": "Language Settings",
+    "offlinePacks": "Offline Language Packs",
+    "packDescription": "Download language packs to use without internet connection.",
+    "download": "Download",
+    "downloaded": "Downloaded",
+    "downloading": "Downloading",
+    "comingSoon": "Coming Soon",
+    "reset": "Reset",
+    "saveChanges": "Save Changes",
+    "restartNote": "The app will restart when you change the language.",
+    "saved": "Language settings saved. Restarting app...",
+    "features": {
+      "voiceRecognition": "Voice Recognition",
+      "voiceDescription": "Natural voice commands",
+      "aiChat": "AI Conversation",
+      "aiDescription": "Context-aware dialogue",
+      "localInfo": "Local Information",
+      "localDescription": "Localized content",
+      "dateFormat": "Date Format",
+      "dateDescription": "Regional date display"
+    },
+    "settings": {
+      "autoTranslate": "Auto Translate",
+      "autoTranslateDesc": "Automatically translate foreign language content",
+      "pronunciationHelp": "Pronunciation Help",
+      "pronunciationDesc": "Pronunciation guide for difficult words",
+      "dialectSupport": "Regional Dialect",
+      "dialectDesc": "Use region-specific expressions"
+    }
+  },
+  "voice": {
+    "listening": "Listening...",
+    "startListening": "Start Voice Recognition",
+    "llmSearching": "LLM Searching"
+  },
+  "health": {
+    "title": "Health Recommendations",
+    "diseases": "My Medical Conditions",
+    "weekHistory": "Week History",
+    "recommend": "Recommendations"
+  },
+  "finance": {
+    "title": "My Finance",
+    "budgetTrend": "Budget Trend",
+    "deposits": "Deposits/Funds/Real Estate",
+    "riskAssets": "Risk Assets"
+  },
+  "news": {
+    "title": "News Feed",
+    "todayNews": "Today's News",
+    "comments": "Comments",
+    "likes": "Likes",
+    "share": "Share",
+    "writeComment": "Write comment..."
+  },
+  "calendar": {
+    "title": "Schedule Management",
+    "events": {
+      "vacation": "Summer Vacation",
+      "deadline": "Project Deadline",
+      "workshop": "Workshop"
+    }
+  },
+  "validation": {
+    "required": "{field} is required.",
+    "minLength": "{field} must be at least {length} characters long.",
+    "maxLength": "{field} can be up to {length} characters long.",
+    "invalidFormat": "{field} format is invalid.",
+    "invalidEmail": "Please enter a valid email address.",
+    "invalidPhone": "Please enter a valid phone number."
+  }
+}

@@ -1,0 +1,219 @@
+/* Theme Variables */
+:root {
+  /* Colors */
+  --primary-bg: #0f1e25;
+  --secondary-bg: #1e333d;
+  --tertiary-bg: #132c35;
+  --card-bg: #1c3c47;
+  --accent-green: #3dd598;
+  --accent-green-hover: #2fc08d;
+  --accent-green-dark: #14532d;
+  --accent-green-light: #a8f4d4;
+  --accent-yellow: #ffc107;
+  --accent-orange: #ffb94e;
+  --accent-red: #f44336;
+  --accent-blue: #03a9f4;
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a0aab0;
+  --text-tertiary: #b0b8c1;
+  --text-muted: #aaa;
+  --text-dark: #0f1e25;
+  
+  /* Gradients */
+  --gradient-main: linear-gradient(-225deg, #3dd598, #25c685);
+  --gradient-weather: linear-gradient(135deg, #45c9f7, #8dd6f9);
+  --gradient-llm: linear-gradient(to bottom, #4b4bff, #ff4b4b);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  
+  /* Typography */
+  --font-family: 'Noto Sans KR', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 48px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Z-index */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal: 999;
+  --z-tooltip: 1000;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Button Styles */
+.btn {
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+}
+
+.btn-primary {
+  background-color: var(--accent-green);
+  color: var(--text-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-green-hover);
+}
+
+.btn-secondary {
+  background-color: var(--accent-green-dark);
+  color: var(--accent-green-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--card-bg);
+}
+
+.btn-back {
+  background-color: transparent;
+  color: var(--accent-yellow);
+  font-size: var(--font-size-base);
+}
+
+.btn-back:hover {
+  color: var(--text-primary);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-secondary {
+  background-color: var(--secondary-bg);
+}
+
+.card-tertiary {
+  background-color: var(--tertiary-bg);
+}
+
+/* Input Styles */
+.input-group {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.input-group input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  flex: 1;
+  margin-left: var(--spacing-sm);
+  font-family: var(--font-family);
+}
+
+.input-group input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Icon Styles */
+.icon {
+  color: var(--accent-yellow);
+  font-size: var(--font-size-lg);
+}
+
+.icon-red { color: var(--accent-red); }
+.icon-yellow { color: var(--accent-yellow); }
+.icon-green { color: var(--accent-green); }
+.icon-blue { color: var(--accent-blue); }
+
+/* Layout Utilities */
+.container {
+  min-height: 100vh;
+  padding: var(--spacing-md);
+  padding-bottom: 5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-sm);
+    padding-bottom: 5rem;
+  }
+}

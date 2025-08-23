@@ -9,12 +9,12 @@
     <!-- 날씨 카드 -->
     <div class="weather-card">
       <div class="weather-left">
-        <img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" alt="weather" class="weather-icon" />
+        <img :src="appStore.weatherInfo.icon" alt="weather" class="weather-icon" />
       </div>
       <div class="weather-right">
-        <div class="temperature">27°</div>
-        <p class="weather-location">서울특별시, 중구 을지로 1가</p>
-        <p class="weather-desc">구름 많음&nbsp;&nbsp;&nbsp;예보보다 0.4°↓</p>
+        <div class="temperature">{{ appStore.weatherInfo.temperature }}°</div>
+        <p class="weather-location">{{ appStore.weatherInfo.location }}</p>
+        <p class="weather-desc">{{ appStore.weatherInfo.description }}&nbsp;&nbsp;&nbsp;예보보다 {{ appStore.weatherInfo.variance }}°↓</p>
       </div>
     </div>
 
@@ -25,13 +25,13 @@
           <span v-for="day in week" :key="day">{{ day }}</span>
         </div>
         <div class="dates">
-          <span class="date" v-for="day in 31" :key="day" :class="{ today: day === 19 }">{{ day }}</span>
+          <span class="date" v-for="day in 31" :key="day" :class="{ today: day === appStore.currentDate.day }">{{ day }}</span>
         </div>
       </div>
       <div class="calendar-footer">
-        <div>8/19일</div>
-        <div class="event">일정 없음</div>
-        <div class="holiday">💗 휴가 3일</div>
+        <div>{{ appStore.currentDate.month }}/{{ appStore.currentDate.day }}일</div>
+        <div class="event">{{ appStore.currentDate.schedule }}</div>
+        <div class="holiday">{{ appStore.currentDate.holiday }}</div>
       </div>
     </div>
 
@@ -55,23 +55,17 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useNavigation } from '../composables/useRouter'
+import { useAppStore } from '../stores/app'
 import BottomNav from './BottomNav.vue'
 
-const router = useRouter()
+const { goToCalendar, goToSideMenu } = useNavigation()
+const appStore = useAppStore()
+
 const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-
-const goToCalendar = () => {
-  router.push('/calendar')
-}
-
-const goToSideMenu = () => {
-  router.push('/menu')
-}
 </script>
 
 <style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 .main-container {
   background-color: #0f1e25;

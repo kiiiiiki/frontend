@@ -16,12 +16,18 @@
           </div>
           <input type="text" placeholder="Your full name" v-model="fullName" />
         </div>
+        <div v-if="getErrorsForField('fullName').length" class="error-messages">
+          <span v-for="error in getErrorsForField('fullName')" :key="error" class="error">{{ error }}</span>
+        </div>
 
         <div class="input-group">
           <div class="icon">
             <i class="fas fa-user"></i>
           </div>
           <input type="text" placeholder="Username" v-model="username" />
+        </div>
+        <div v-if="getErrorsForField('username').length" class="error-messages">
+          <span v-for="error in getErrorsForField('username')" :key="error" class="error">{{ error }}</span>
         </div>
       </div>
 
@@ -36,28 +42,38 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useNavigation } from '../composables/useRouter'
+import { useValidation } from '../composables/useValidation'
+import { useUserStore } from '../stores/user'
+import { ROUTES } from '../constants/routes'
 
-const router = useRouter()
-const fullName = ref('')
-const username = ref('')
+const { goBack, goTo } = useNavigation()
+const { validateForm, getErrorsForField, hasErrors } = useValidation()
+const userStore = useUserStore()
 
-const goBack = () => {
-  router.back()
-}
+const fullName = ref(userStore.userInfo.fullName)
+const username = ref(userStore.userInfo.username)
 
 const goNext = () => {
-  if (!fullName.value || !username.value) {
-    alert('이름과 사용자명을 입력해주세요.')
-    return
-  }
+  const isValid = validateForm({
+    fullName: {
+      value: fullName.value,
+      rules: { required: true, minLength: 2, message: '이름을 2자 이상 입력해주세요.' }
+    },
+    username: {
+      value: username.value,
+      rules: { required: true, minLength: 3, message: '사용자명을 3자 이상 입력해주세요.' }
+    }
+  })
 
-  router.push('/permission')
+  if (isValid) {
+    userStore.updateUserInfo({ fullName: fullName.value, username: username.value })
+    goTo(ROUTES.MAIN_HOME)
+  }
 }
 </script>
 
 <style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 .container {
   background-color: #0f1e25;
@@ -158,5 +174,16 @@ const goNext = () => {
 
 .next-btn:hover {
   background-color: #2fc08d;
+}
+
+.error-messages {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: var(--accent-red);
+  font-size: var(--font-size-xs);
+  display: block;
 }
 </style>

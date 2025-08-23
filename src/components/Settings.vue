@@ -4,30 +4,33 @@
     <div class="user-card">
       <img
         class="avatar"
-        src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+        :src="userStore.userInfo.avatar || IMAGES.AVATAR_MALE"
         alt="avatar"
       />
       <div class="user-info">
-        <div class="name">Austin</div>
-        <div class="phone">+91 23 456 7890</div>
-        <div class="email">randommail@mail.me</div>
+        <div class="name">{{ userStore.displayName }}</div>
+        <div class="phone">{{ userStore.userInfo.phone }}</div>
+        <div class="email">{{ userStore.userInfo.email }}</div>
       </div>
       <i class="fas fa-chevron-right arrow"></i>
     </div>
 
     <!-- 일반 메뉴 리스트 -->
     <div class="menu-section">
-      <div class="menu-item">
+      <div class="menu-item clickable" @click="goToProfileEdit">
         <i class="fas fa-user icon red"></i>
-        <span>프로필 수정</span>
+        <span>{{ t('settings.profile') }}</span>
+        <i class="fas fa-chevron-right arrow-right"></i>
       </div>
-      <div class="menu-item">
+      <div class="menu-item clickable" @click="goToDailyReports">
         <i class="fas fa-file-alt icon yellow"></i>
-        <span>저장된 일일 보고서</span>
+        <span>{{ t('settings.reports') }}</span>
+        <i class="fas fa-chevron-right arrow-right"></i>
       </div>
-      <div class="menu-item">
+      <div class="menu-item clickable" @click="goToIntegrationsManager">
         <i class="fas fa-link icon green"></i>
-        <span>연동/권한 관리</span>
+        <span>{{ t('settings.integrations') }}</span>
+        <i class="fas fa-chevron-right arrow-right"></i>
       </div>
     </div>
 
@@ -36,30 +39,31 @@
       <div class="menu-item toggle">
         <div class="left">
           <i class="fas fa-shield-alt icon yellow"></i>
-          <span>보안/정책</span>
+          <span>{{ t('settings.security') }}</span>
         </div>
-        <input type="checkbox" checked />
+        <input type="checkbox" v-model="userStore.userSettings.notifications.security" />
       </div>
 
       <div class="menu-item toggle">
         <div class="left">
           <i class="fas fa-share-alt icon green"></i>
-          <span>공유</span>
+          <span>{{ t('settings.sharing') }}</span>
         </div>
-        <input type="checkbox" checked />
+        <input type="checkbox" v-model="userStore.userSettings.notifications.sharing" />
       </div>
 
       <div class="menu-item toggle">
         <div class="left">
           <i class="fas fa-bell icon gray"></i>
-          <span>알림 센터</span>
+          <span>{{ t('settings.notifications') }}</span>
         </div>
-        <input type="checkbox" />
+        <input type="checkbox" v-model="userStore.userSettings.notifications.alerts" />
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item clickable" @click="goToLanguagePicker">
         <i class="fas fa-language icon teal"></i>
-        <span>언어 변경하기</span>
+        <span>{{ t('settings.language') }}</span>
+        <i class="fas fa-chevron-right arrow-right"></i>
       </div>
     </div>
 
@@ -69,7 +73,15 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+import { useUserStore } from '../stores/user'
+import { useNavigation } from '../composables/useRouter'
+import { IMAGES } from '../constants/images'
 import BottomNav from './BottomNav.vue'
+
+const { t } = useI18n()
+const userStore = useUserStore()
+const { goToProfileEdit, goToDailyReports, goToIntegrationsManager, goToLanguagePicker } = useNavigation()
 </script>
 
 <style scoped>
@@ -153,6 +165,24 @@ import BottomNav from './BottomNav.vue'
 }
 .icon.teal {
   color: #2dd4bf;
+}
+
+/* Clickable menu items */
+.menu-item.clickable {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  position: relative;
+}
+
+.menu-item.clickable:hover {
+  background-color: var(--secondary-bg);
+}
+
+.arrow-right {
+  position: absolute;
+  right: 1rem;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
 }
 
 /* 토글 스위치 */

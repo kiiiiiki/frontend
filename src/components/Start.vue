@@ -35,9 +35,12 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useNavigation } from '../composables/useRouter'
+import { ROUTES } from '../constants/routes'
 
-const router = useRouter()
+const { t } = useI18n()
+const { goTo } = useNavigation()
 const countdown = ref(2)
 
 onMounted(() => {
@@ -45,7 +48,7 @@ onMounted(() => {
     countdown.value--
     if (countdown.value <= 0) {
       clearInterval(interval)
-      router.push('/login')
+      goTo(ROUTES.LOGIN)
     }
   }, 1000)
 })
