@@ -19,10 +19,9 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.8.3",
-    "vite": "^5.0.0"
-  },
-  "devDependencies": {
+    "vite": "^5.0.0",
     "@vue/tsconfig": "^0.7.0",
     "vue-tsc": "^1.8.0"
-  }
+  },
+  "devDependencies": {}
 }
