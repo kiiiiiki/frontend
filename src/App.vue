@@ -1,10 +1,9 @@
-
-
 <template>
   <router-view />
 </template>
 
 <style scoped>
+/* 기본 스타일 유지 */
 .logo {
   height: 6em;
   padding: 1.5em;

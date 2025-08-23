@@ -1,271 +1,155 @@
 <template>
-  <div class="mobile-container">
-    <!-- Header -->
-    <div class="header">
-      <button class="back-btn" @click="goBack">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <h1 class="header-title">로그인</h1>
-    </div>
+  <div class="selection">
+    <div class="card">
+      <!-- 로고/아이콘 -->
+      <div class="logo-placeholder"></div>
 
-    <!-- Content -->
-    <div class="content">
-      <!-- Globe Icon -->
-      <div class="globe-icon-container">
-        <div class="globe-icon">
-          <svg width="140" height="140" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="48" fill="#6366F1" />
-            <path d="M50 10a40 40 0 1 0 0.01 0z" fill="#fff" fill-opacity="0.15"/>
-            <path d="M30 50a20 20 0 0 1 40 0" stroke="#fff" stroke-width="3" fill="none"/>
-            <ellipse cx="50" cy="50" rx="30" ry="12" fill="#fff" fill-opacity="0.15"/>
-            <ellipse cx="50" cy="50" rx="20" ry="8" fill="#fff" fill-opacity="0.15"/>
-          </svg>
-        </div>
+      <!-- 텍스트 -->
+      <h1 class="title">선호 언어를<br />선택해주세요</h1>
+      <p class="subtitle">언어에 맞는 응답을 드릴게요</p>
+
+      <!-- 언어 선택 -->
+      <div class="language-select">
+        <img src="https://flagcdn.com/w40/nl.png" alt="netherlands flag" />
+        <select v-model="selectedLanguage">
+          <option value="nl">네덜란드어</option>
+          <option value="ko">한국어</option>
+          <option value="en">영어</option>
+          <option value="es">스페인어</option>
+        </select>
       </div>
 
-      <!-- Title -->
-      <div class="title-section">
-        <h2 class="main-title">언어 선택</h2>
-        <p class="subtitle">원활한 소통을 위해 선호하는 언어를 선택해 주세요.</p>
+      <!-- 버튼 영역 -->
+      <div class="button-group">
+        <button class="back-btn" @click="goBack">←</button>
+        <button class="next-btn" @click="goNext">다음 →</button>
       </div>
-
-      <!-- Language Form -->
-      <div class="form-section">
-        <div class="form-group">
-          <label class="form-label">당신의 선호 언어</label>
-          <div class="select-wrapper">
-            <select v-model="selectedLang" class="form-select">
-              <option value="ko">한국어</option>
-              <option value="en">영어(English)</option>
-              <option value="zh">중국어(中文)</option>
-              <option value="ja">일본어(日本語)</option>
-              <option value="vi">베트남어(Tiếng Việt)</option>
-              <option value="th">태국어(ภาษาไทย)</option>
-              <option value="ru">러시아어(Русский)</option>
-              <option value="es">스페인어(Español)</option>
-              <option value="fr">프랑스어(Français)</option>
-              <option value="de">독일어(Deutsch)</option>
-            </select>
-            <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Next Button -->
-      <div class="button-section">
-        <button class="next-btn" @click="goNext">
-          다음으로 넘어가기
-        </button>
-      </div>
-
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const selectedLang = ref('vi')
+const selectedLanguage = ref('nl')
 
-// 이전 페이지에서 전달된 정보 받기
-const route = useRoute()
-const city = route.query.city || ''
-const address = route.query.address || ''
-
-function goBack() {
+const goBack = () => {
   router.back()
 }
 
-function goNext() {
-  router.push({
-    path: '/user',
-    query: {
-      city,
-      address,
-      language: selectedLang.value
-    }
-  })
-}
-
-function onStartClick() {
-  // TODO: Implement start action, e.g., go to home or main app page
-  router.push('/')
+const goNext = () => {
+  router.push('/permission')
 }
 </script>
 
 <style scoped>
-.mobile-container {
-  width: 100%;
-  min-height: 100vh;
-  max-width: 430px;
-  margin: 0 auto;
-  background-color: #F8F9FA;
-  display: flex;
-  flex-direction: column;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: white;
-  border-bottom: 1px solid #E5E7EB;
-}
-
-.back-btn {
-  padding: 0.5rem;
-  color: #6B7280;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.header-title {
-  flex: 1;
-  text-align: center;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1F2937;
-  margin-right: 2.5rem;
-}
-
-.content {
-  flex: 1;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.globe-icon-container {
+.selection {
+  height: 100vh;
+  width: 100vw;
+  background-color: #0f1e25;
   display: flex;
   justify-content: center;
-  margin-bottom: 2.5rem;
+  align-items: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-.globe-icon {
-  padding: 0.5rem;
-}
-
-.title-section {
+.card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 3rem;
+  color: white;
 }
 
-.main-title {
-  font-size: 1.5rem;
+.logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #22c55e;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 24px;
   font-weight: 700;
-  color: #1F2937;
+  line-height: 1.4;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #6B7280;
-  font-weight: 500;
+  color: #a0aab0;
+  font-size: 14px;
+  margin-bottom: 2.5rem;
 }
 
-.form-section {
-  flex: 1;
-  margin-bottom: 2rem;
-}
-
-.form-group {
-  margin-bottom: 2rem;
-}
-
-.form-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #6B7280;
-  margin-bottom: 0.5rem;
-}
-
-.select-wrapper {
-  position: relative;
-}
-
-.form-select {
+.language-select {
+  display: flex;
+  align-items: center;
+  background-color: #14532d;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  gap: 0.5rem;
   width: 100%;
-  padding: 1rem;
-  border: 2px solid #E5E7EB;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  background-color: white;
+  max-width: 280px;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.language-select img {
+  width: 20px;
+  height: 14px;
+}
+
+.language-select select {
+  background: transparent;
+  border: none;
+  color: #a8f4d4;
+  font-size: 16px;
+  font-weight: 600;
   appearance: none;
   cursor: pointer;
-}
-
-.form-select:focus {
   outline: none;
-  border-color: #6366F1;
 }
 
-.select-arrow {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9CA3AF;
-  pointer-events: none;
+.button-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.button-section {
-  margin-top: auto;
+.back-btn {
+  background-color: #14532d;
+  border: none;
+  color: #a8f4d4;
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .next-btn {
-  width: 100%;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
-  color: white;
+  background-color: #3dd598;
   border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
+  color: #0f1e25;
+  font-size: 16px;
   font-weight: 600;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  transition: background-color 0.2s ease;
 }
 
 .next-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
-}
-
-.start-btn {
-  width: 100%;
-  margin-top: 0;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #6366F1 0%, #818CF8 100%);
-  color: white;
-  border: none;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.start-section {
-  margin-top: 2.5rem;
-}
-
-.start-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-}
-
-@media (max-width: 430px) {
-  .mobile-container {
-    max-width: 100vw;
-  }
+  background-color: #2fc08d;
 }
 </style>
+

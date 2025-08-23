@@ -1,20 +1,29 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from './components/Home.vue';
-import Location from './components/Location.vue';
-import Selection from './components/Selection.vue';
-import User from './components/User.vue';
-import Main from './components/Main.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import Start from './components/Start.vue'
+import Login from './components/Login.vue'
+import Selection from './components/Selection.vue'
+import Permission from './components/Permission.vue' // ✅ 이미 만든 파일만
+import GetUsername from './components/get_username.vue'
+import MainHome from './components/Main_home.vue'
+import CalendarView from './components/CalendarView.vue'
+import SideMenu from './components/SideMenu.vue'
+import Settings from './components/Settings.vue'
+import VoiceRecognition from './components/VoiceRecognition.vue'
+import HealthRecommend from './components/HealthRecommend.vue'
+import NewsFeed from './components/NewsFeed.vue'
+import PriceForecast from './components/PriceForecast.vue'
+import Finance from './components/Finance.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Start',
+    component: Start,
   },
   {
-    path: '/location',
-    name: 'Location',
-    component: Location,
+    path: '/login',
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/selection',
@@ -22,20 +31,65 @@ const routes = [
     component: Selection,
   },
   {
-    path: '/user',
-    name: 'User',
-    component: User,
+    path: '/permission',
+    name: 'Permission',
+    component: Permission,
   },
   {
-    path: '/main',
-    name: 'Main',
-    component: Main,
+    path: '/get_username',
+    name: 'GetUsername',
+    component: GetUsername,
   },
-];
+  {
+    path: '/main_home',
+    name: 'MainHome',
+    component: MainHome,
+  },
+  {
+    path: '/calendar',
+    name: 'CalendarView',
+    component: CalendarView,
+  },
+  {
+    path: '/menu',
+    name: 'SideMenu',
+    component: SideMenu,
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
+  },
+  {
+    path: '/voice',
+    name: 'VoiceRecognition',
+    component: VoiceRecognition,
+  },
+  {
+    path: '/health',
+    name: 'HealthRecommend',
+    component: HealthRecommend,
+  },
+  {
+    path: '/news',
+    name: 'NewsFeed',
+    component: NewsFeed,
+  },
+  {
+    path: '/price',
+    name: 'PriceForecast',
+    component: PriceForecast,
+  },
+  {
+    path: '/finance',
+    name: 'Finance',
+    component: Finance,
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-export default router;
+export default router
