@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePriceStore } from '@/stores/priceStore'
+import { usePriceStore } from '../../stores/priceStore'
 const store = usePriceStore()
 async function gen(type:'daily'|'weekly'){ await store.saveReport(type) }
 </script>
