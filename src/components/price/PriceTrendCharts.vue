@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
 import { ref, watch, onMounted } from 'vue'
-import { usePriceStore } from '@/stores/priceStore'
+import { usePriceStore } from '../../stores/priceStore'
 
 const store = usePriceStore()
 const lineRef = ref<HTMLDivElement|null>(null)
