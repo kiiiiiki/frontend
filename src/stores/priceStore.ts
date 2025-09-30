@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { priceService } from '@/utils/priceService'
-import type { Deal, PricePoint } from '@/utils/priceService'
+import { priceService } from '../utils/priceService'
+import type { Deal, PricePoint } from '../utils/priceService'
 
 export const usePriceStore = defineStore('price', {
   state: () => ({
