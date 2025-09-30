@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { usePriceStore } from '@/stores/priceStore'
+import { usePriceStore } from '../../stores/priceStore'
 import DealLLMModal from './DealLLMModal.vue'
 
 const store = usePriceStore()
