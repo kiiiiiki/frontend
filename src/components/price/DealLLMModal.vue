@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Deal } from '@/utils/priceService'
+import type { Deal } from '../../utils/priceService'
 defineProps<{ deal: Deal; reason: string }>()
 defineEmits(['close'])
 </script>
