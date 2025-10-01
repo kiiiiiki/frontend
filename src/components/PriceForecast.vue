@@ -8,7 +8,6 @@
     <!-- 상단 제목 -->
     <h1 class="title">바나나 구매를<br />도와드릴게요</h1>
 
-    <!-- 1) 주간 바나나 가격 변동 추이 -->
     <div class="card">
       <div class="chart-title">주간 바나나 가격 변동 추이</div>
       <div ref="weeklyRef" class="chart-box"></div>
@@ -62,7 +61,6 @@ import BottomNav from './BottomNav.vue'
 
 const router = useRouter()
 const goBack = () => router.go(-1)
-
 const weeklyRef = ref<HTMLDivElement|null>(null)
 const yoyRef    = ref<HTMLDivElement|null>(null)
 

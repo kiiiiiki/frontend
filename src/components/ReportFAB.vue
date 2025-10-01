@@ -4,6 +4,7 @@
 
   <!-- 패널 -->
   <div v-if="open" class="drawer" @click.self="open = false">
+
     <aside class="panel">
       <header class="head">
         <strong>저장된 일일 보고서</strong>
@@ -25,7 +26,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-
 type Report = { id: string; date: string; type: 'daily' | 'weekly'; url?: string }
 
 const open = ref(false)
