@@ -81,19 +81,33 @@ let barChart:echarts.ECharts|null = null
 function drawWeekly(){
   if(!weeklyRef.value) return
   lineChart = lineChart || echarts.init(weeklyRef.value)
+  const values = weekly.value.map(d=>d.value)
   lineChart.setOption({
+    tooltip:{ trigger:'axis' },
+    grid:{ left: 40, right: 20, top: 20, bottom: 40 },
     xAxis:{ type:'category', data: weekly.value.map(d=>d.date) },
-    yAxis:{ type:'value' },
-    series:[{ type:'line', smooth:true, areaStyle:{}, data: weekly.value.map(d=>d.value) }]
+    yAxis:{
+      type:'value',
+      min: Math.min(...values) - 50,  // 데이터 기준으로 축 좁히기
+      max: Math.max(...values) + 50
+    },
+    series:[{
+      type:'line',
+      smooth:true,
+      areaStyle:{},
+      data: values
+    }]
   })
 }
 function drawYoY(){
   if(!yoyRef.value) return
   barChart = barChart || echarts.init(yoyRef.value)
   barChart.setOption({
+    tooltip:{},
+    grid:{ left: 40, right: 20, top: 20, bottom: 40 },
     xAxis:{ type:'category', data:['작년','현재'] },
-    yAxis:{ type:'value' },
-    series:[{ type:'bar', data:[lastYearPrice.value, currentPrice.value] }]
+    yAxis:{ type:'value', min: Math.min(lastYearPrice.value,currentPrice.value)-50 },
+    series:[{ type:'bar', data:[lastYearPrice.value, currentPrice.value], barWidth:'40%' }]
   })
 }
 function resize(){ lineChart?.resize(); barChart?.resize() }
@@ -108,7 +122,7 @@ function openLLM(){
 }
 
 onMounted(()=>{
-  // dummy data
+  // 최근 14일 더미 데이터
   weekly.value = Array.from({length:14},(_,i)=>({
     date:new Date(Date.now()-(13-i)*86400000).toISOString().slice(5,10),
     value:3300+Math.round(Math.random()*200)
@@ -129,11 +143,11 @@ onUnmounted(()=> window.removeEventListener('resize', resize))
 .title{ font-size:24px; font-weight:bold; margin-bottom:1.5rem; }
 .card{ background:#1e2e36; border-radius:20px; padding:1rem; margin-bottom:1.2rem; }
 .chart-title{ font-size:14px; color:#ccc; margin-bottom:0.6rem }
-.chart-box{ background:#263843; height:160px; border-radius:12px }
+.chart-box{ background:#263843; height:300px; border-radius:12px }   /* ✅ 높이 늘림 */
 .abs-chart{ position:absolute; inset:0; }
-.label{ position:absolute; top:12px; left:12px; background:#3dd598; color:#0f1e25; padding:4px 8px; border-radius:10px; font-size:12px; font-weight:600; }
+.label{ position:absolute; top:12px; left:12px; background:#3dd598; color:#0f1e25; padding:4px 8px; border-radius:10px; font-size:12px; font-weight:600; z-index:1 }
 
-/* best deal box */
+/* best deal */
 .best-deal-box{ display:flex; justify-content:space-between; align-items:center; background:#263843; padding:12px; border-radius:12px }
 .deal-title{ font-weight:bold; margin-bottom:4px }
 .deal-price{ color:#9ca3af; font-size:13px }
