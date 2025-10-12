@@ -5,11 +5,12 @@
       <span class="back-btn" @click="goBack">← Back</span>
     </div>
 
-    <!-- 상단 제목 -->
-    <h1 class="title">바나나 구매를<br />도와드릴게요</h1>
+    <!-- 상단 제목: ✅ 선택한 과일명 사용 -->
+    <h1 class="title">{{ fruit }} 구매를<br />도와드릴게요</h1>
 
+    <!-- 1) 주간 {{fruit}} 가격 변동 추이 -->
     <div class="card">
-      <div class="chart-title">주간 바나나 가격 변동 추이</div>
+      <div class="chart-title">주간 {{ fruit }} 가격 변동 추이</div>
       <div ref="weeklyRef" class="chart-box"></div>
     </div>
 
@@ -27,6 +28,7 @@
       <div class="chart-title">최저가 구매처 제안</div>
       <div class="best-deal-box">
         <div class="deal-info">
+          <!-- ✅ item을 fruit로 -->
           <p class="deal-title">{{ bestDeal.market }} · {{ bestDeal.item }} ({{ bestDeal.unit }})</p>
           <p class="deal-price">{{ formatWon(bestDeal.price) }} · 할인 {{ bestDeal.discountPct }}%</p>
         </div>
@@ -56,19 +58,25 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import * as echarts from 'echarts'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'   // ✅ useRoute 추가
 import BottomNav from './BottomNav.vue'
 
 const router = useRouter()
+const route  = useRoute()                           // ✅ 현재 라우트 접근
 const goBack = () => router.go(-1)
+
 const weeklyRef = ref<HTMLDivElement|null>(null)
 const yoyRef    = ref<HTMLDivElement|null>(null)
+
+const fruit = ref<string>((route.query.fruit as string) || '바나나')  // ✅ 과일명 쿼리로 수신
 
 const weekly = ref<{date:string,value:number}[]>([])
 const currentPrice = ref(0)
 const lastYearPrice = ref(0)
 
-const bestDeal = ref({ market:'이마트', item:'바나나', unit:'1kg', price:3980, discountPct:20 })
+// ✅ 최저가 제안: item을 fruit로 세팅
+const bestDeal = ref({ market:'이마트', item: fruit.value, unit:'1kg', price:3980, discountPct:20 })
+
 const showModal = ref(false)
 const llmReason = ref('')
 const formatWon = (v:number)=> `${v.toLocaleString()}원`
@@ -86,7 +94,7 @@ function drawWeekly(){
     xAxis:{ type:'category', data: weekly.value.map(d=>d.date) },
     yAxis:{
       type:'value',
-      min: Math.min(...values) - 50,  // 데이터 기준으로 축 좁히기
+      min: Math.min(...values) - 50,
       max: Math.max(...values) + 50
     },
     series:[{
@@ -114,7 +122,7 @@ function openLLM(){
   llmReason.value =
 `[추천 이유]
 - 가격: ${formatWon(bestDeal.value.price)} (할인 ${bestDeal.value.discountPct}%)
-- 영양: 바나나 1개당 칼륨 422mg, 비타민B6 0.4mg
+- 영양: ${fruit.value} 1회 제공 기준, 권장 섭취량 충족에 유리
 - 거리: 인근 매장 1.2km`
   showModal.value = true
 }
@@ -141,7 +149,7 @@ onUnmounted(()=> window.removeEventListener('resize', resize))
 .title{ font-size:24px; font-weight:bold; margin-bottom:1.5rem; }
 .card{ background:#1e2e36; border-radius:20px; padding:1rem; margin-bottom:1.2rem; }
 .chart-title{ font-size:14px; color:#ccc; margin-bottom:0.6rem }
-.chart-box{ background:#263843; height:300px; border-radius:12px }   /* ✅ 높이 늘림 */
+.chart-box{ background:#263843; height:300px; border-radius:12px }
 .abs-chart{ position:absolute; inset:0; }
 .label{ position:absolute; top:12px; left:12px; background:#3dd598; color:#0f1e25; padding:4px 8px; border-radius:10px; font-size:12px; font-weight:600; z-index:1 }
 
