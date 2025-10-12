@@ -62,7 +62,7 @@ const goToNews = () => {
 }
 
 const goToShop = () => {
-  router.push('/price')
+  router.push('/price-select')
 }
 
 const goToFinance = () => {
