@@ -19,6 +19,8 @@ import IntegrationsManager from './components/IntegrationsManager.vue'
 import LanguagePicker from './components/LanguagePicker.vue'
 // 기경: 아래에 새로 작성한 컴포넌트 import 수정함
 import PriceFeatureEntry from './components/price/PriceFeatureEntry.vue'
+// 기경 new: 아래에 새로 작성한 과일 선택창 옵션 추가
+import FruitSelect from './components/FruitSelect.vue'   
 
 
 const routes = [
@@ -81,6 +83,11 @@ const routes = [
     path: '/news',
     name: 'NewsFeed',
     component: NewsFeed,
+  },
+  {
+  path: '/price-select',
+  name: 'FruitSelect',
+  component: FruitSelect,
   },
   {
     path: '/price',
