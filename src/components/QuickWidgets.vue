@@ -126,11 +126,21 @@ const fetchDietRecommendations = async () => {
   try {
     const response = await apiClient.get('/diet/recommendations')
 
-    if (response.data.success && response.data.data) {
+    // success 여부와 관계없이 data가 있으면 표시
+    if (response.data.data && Array.isArray(response.data.data) && response.data.data.length > 0) {
       dietRecommendations.value = response.data.data
       console.log('개인화된 식단 추천 로드 완료:', response.data.health_context)
+      if (!response.data.success) {
+        console.warn('식단 추천 생성 중 일부 오류 발생, 기본 식단 표시:', response.data.error)
+      }
     } else {
       console.warn('식단 추천 데이터가 없습니다')
+      // 데이터가 없으면 기본 식단 표시
+      dietRecommendations.value = [
+        { meal: '아침', menu: '오트밀 + 바나나', calories: 320 },
+        { meal: '점심', menu: '현미밥 + 연어구이', calories: 580 },
+        { meal: '저녁', menu: '샐러드 + 닭가슴살', calories: 450 }
+      ]
     }
   } catch (error) {
     console.error('식단 추천 가져오기 실패:', error)

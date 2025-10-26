@@ -18,56 +18,56 @@ export interface MedicationDto {
 class HealthService {
   // ── Disease Management ──
   async listDiseases(): Promise<DiseaseDto[]> {
-    const response = await apiClient.get<DiseaseDto[]>('/health/diseases')
+    const response = await apiClient.get<DiseaseDto[]>('/api/v1/health/diseases')
     return response.data
   }
 
   async createDisease(disease: DiseaseDto): Promise<DiseaseDto> {
-    const response = await apiClient.post<DiseaseDto>('/health/diseases', disease)
+    const response = await apiClient.post<DiseaseDto>('/api/v1/health/diseases', disease)
     return response.data
   }
 
   async getDisease(id: number): Promise<DiseaseDto> {
-    const response = await apiClient.get<DiseaseDto>(`/health/diseases/${id}`)
+    const response = await apiClient.get<DiseaseDto>(`/api/v1/health/diseases/${id}`)
     return response.data
   }
 
   async updateDisease(id: number, disease: DiseaseDto): Promise<DiseaseDto> {
-    const response = await apiClient.put<DiseaseDto>(`/health/diseases/${id}`, disease)
+    const response = await apiClient.put<DiseaseDto>(`/api/v1/health/diseases/${id}`, disease)
     return response.data
   }
 
   async deleteDisease(id: number): Promise<void> {
-    await apiClient.delete(`/health/diseases/${id}`)
+    await apiClient.delete(`/api/v1/health/diseases/${id}`)
   }
 
   // ── Medication Management ──
   async listMedications(): Promise<MedicationDto[]> {
-    const response = await apiClient.get<MedicationDto[]>('/health/medications')
+    const response = await apiClient.get<MedicationDto[]>('/api/v1/health/medications')
     return response.data
   }
 
   async createMedication(medication: MedicationDto): Promise<MedicationDto> {
-    const response = await apiClient.post<MedicationDto>('/health/medications', medication)
+    const response = await apiClient.post<MedicationDto>('/api/v1/health/medications', medication)
     return response.data
   }
 
   async getMedication(id: number): Promise<MedicationDto> {
-    const response = await apiClient.get<MedicationDto>(`/health/medications/${id}`)
+    const response = await apiClient.get<MedicationDto>(`/api/v1/health/medications/${id}`)
     return response.data
   }
 
   async updateMedication(id: number, medication: MedicationDto): Promise<MedicationDto> {
-    const response = await apiClient.put<MedicationDto>(`/health/medications/${id}`, medication)
+    const response = await apiClient.put<MedicationDto>(`/api/v1/health/medications/${id}`, medication)
     return response.data
   }
 
   async deleteMedication(id: number): Promise<void> {
-    await apiClient.delete(`/health/medications/${id}`)
+    await apiClient.delete(`/api/v1/health/medications/${id}`)
   }
 
   async getDueMedications(from: string, to: string): Promise<MedicationDto[]> {
-    const response = await apiClient.get<MedicationDto[]>('/health/medications/due', {
+    const response = await apiClient.get<MedicationDto[]>('/api/v1/health/medications/due', {
       params: { from, to }
     })
     return response.data

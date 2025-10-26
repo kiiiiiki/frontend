@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import authService from '../services/authService'
-import * as CryptoJS from 'crypto-js'
 
 export interface UserInfo {
   fullName: string
@@ -101,8 +100,8 @@ export const useUserStore = defineStore('user', () => {
       }
 
       // 프로덕션: 백엔드 API 호출
-      const passwordHash = CryptoJS.SHA256(password).toString()
-      const response = await authService.login(username, passwordHash)
+      // BCrypt 검증을 위해 평문 비밀번호를 전송 (HTTPS 사용 시 안전)
+      const response = await authService.login(username, password)
 
       if (response.token) {
         isLoggedIn.value = true
@@ -184,11 +183,11 @@ export const useUserStore = defineStore('user', () => {
 
   const finalizeRegistration = async (userid: string, password: string, issueToken: boolean = true) => {
     try {
-      const passwordHash = CryptoJS.SHA256(password).toString()
+      // BCrypt 해싱을 위해 평문 비밀번호를 전송 (HTTPS 사용 시 안전)
       const response = await authService.finalizeRegistration({
         registrationId: registrationId.value,
         userid,
-        passwordHash,
+        passwordHash: password, // 필드명은 passwordHash지만 평문 전송
         issueToken
       })
 

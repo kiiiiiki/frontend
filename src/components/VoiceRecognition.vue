@@ -115,7 +115,7 @@ const waveHeights = ref<number[]>(Array(30).fill(15))
 const isSpeaking = ref(false)
 let currentAudio: HTMLAudioElement | null = null
 
-const API_BASE_URL = 'http://localhost:8000/api/v1'
+const API_BASE_URL = '/api/v1' // Vite proxy 사용
 
 // Web Audio API 변수
 let audioContext: AudioContext | null = null

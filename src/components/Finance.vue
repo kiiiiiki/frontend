@@ -92,6 +92,49 @@
       </div>
     </div>
 
+    <!-- AI 금융 보고서 섹션 -->
+    <div class="section">
+      <div class="section-header">
+        <h3>AI 금융 분석 보고서</h3>
+        <button
+          v-if="!isNewUser"
+          class="refresh-btn"
+          @click="loadFinanceReport"
+          :disabled="loadingReport"
+        >
+          <i class="fas fa-sync-alt" :class="{ 'fa-spin': loadingReport }"></i>
+        </button>
+      </div>
+
+      <!-- 신규 사용자 가이드 -->
+      <div v-if="isNewUser" class="new-user-guide">
+        <div class="guide-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h4>자산 정보를 등록해주세요</h4>
+        <p>맞춤형 AI 금융 분석을 받으려면 먼저 보유 자산을 입력해주세요.</p>
+        <div class="guide-actions">
+          <button class="guide-btn primary" @click="showAddModal = true">
+            <i class="fas fa-plus"></i> 자산 추가하기
+          </button>
+        </div>
+      </div>
+
+      <!-- AI 보고서 영역 -->
+      <div v-else>
+        <div v-if="loadingReport" class="loading-message">
+          <i class="fas fa-spinner fa-spin"></i> AI가 금융 분석 보고서를 생성하는 중...
+        </div>
+        <div v-else-if="reportError" class="error-message">
+          {{ reportError }}
+        </div>
+        <div v-else-if="!financeReportText" class="empty-message">
+          자산 정보를 바탕으로 AI 분석 보고서를 생성합니다. 새로고침 버튼을 클릭하세요.
+        </div>
+        <div v-else class="recommendation-text" v-html="formatMarkdown(financeReportText)"></div>
+      </div>
+    </div>
+
     <!-- Add Finance Item Modal -->
     <div v-if="showAddModal" class="modal-overlay" @click="closeAddModal">
       <div class="modal-content" @click.stop>
@@ -162,8 +205,25 @@ const newItem = ref({
   content: ''
 })
 
+// AI 보고서 관련
+const financeReportText = ref('')
+const loadingReport = ref(false)
+const reportError = ref('')
+
+const API_BASE_URL = '/api/v1'
+
+// 신규 사용자 여부 (자산이 없는 경우)
+const isNewUser = computed(() => {
+  return financeItems.value.length === 0
+})
+
 onMounted(async () => {
   await loadFinanceItems()
+
+  // 신규 사용자가 아닐 때만 AI 보고서 자동 로드
+  if (!isNewUser.value) {
+    await loadFinanceReport()
+  }
 })
 
 const loadFinanceItems = async () => {
@@ -259,6 +319,119 @@ const deleteItem = async (id) => {
     console.error('Failed to delete finance item:', error)
     alert('자산 삭제에 실패했습니다.')
   }
+}
+
+// AI 금융 분석 보고서 로드
+const loadFinanceReport = async () => {
+  loadingReport.value = true
+  reportError.value = ''
+
+  try {
+    // 자산 정보 구성
+    const assetsList = financeItems.value.map(item =>
+      `${item.category}: ${item.name} (${formatCurrency(item.amount)})`
+    ).join(', ')
+
+    const prompt = `당신은 금융 전문가입니다. 다음 자산 정보를 가진 사용자에게 포트폴리오 분석과 투자 조언을 제공해주세요.
+
+총 자산: ${formatCurrency(totalAssets.value)}
+안전 자산: ${formatCurrency(safeAssetTotal.value)} (${safeAssetPercent.value}%)
+위험 자산: ${formatCurrency(riskyAssetTotal.value)} (${riskyAssetPercent.value}%)
+
+보유 자산 목록:
+${assetsList}
+
+위 자산 정보를 분석하여:
+1. 포트폴리오 종합 평가 (강점과 약점)
+2. 자산 배분 비율에 대한 의견
+3. 추천 투자 전략 또는 개선 방향
+4. 리스크 관리 조언
+
+을 간결하고 실용적으로 제시해주세요.`
+
+    console.log('💰 Requesting finance report from LLM')
+
+    // JWT 토큰 가져오기
+    const token = localStorage.getItem('jwt_token')
+    const headers = {
+      'Content-Type': 'application/json',
+    }
+
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`
+    } else {
+      throw new Error('로그인이 필요합니다')
+    }
+
+    const response = await fetch(`${API_BASE_URL}/chat-with-tools`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        message: prompt,
+        stream: true
+      })
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const reader = response.body?.getReader()
+    const decoder = new TextDecoder()
+
+    if (!reader) {
+      throw new Error('스트림 리더를 생성할 수 없습니다')
+    }
+
+    financeReportText.value = ''
+    let done = false
+
+    while (!done) {
+      const { value, done: readerDone } = await reader.read()
+      done = readerDone
+
+      if (value) {
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split('\n')
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const dataStr = line.substring(6)
+            if (dataStr.trim()) {
+              try {
+                const data = JSON.parse(dataStr)
+                if (data.content) {
+                  financeReportText.value += data.content
+                }
+              } catch (e) {
+                // JSON 파싱 오류 무시
+              }
+            }
+          }
+        }
+      }
+    }
+
+    console.log('✅ Finance report loaded successfully')
+
+  } catch (error) {
+    console.error('Failed to load finance report:', error)
+    reportError.value = '보고서 생성에 실패했습니다. 다시 시도해주세요.'
+  } finally {
+    loadingReport.value = false
+  }
+}
+
+// Markdown 포맷팅
+const formatMarkdown = (text) => {
+  if (!text) return ''
+
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\n/g, '<br>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
 }
 
 const closeAddModal = () => {
@@ -661,6 +834,138 @@ const goBack = () => {
 
 .save-btn:hover {
   background: #22c55e;
+}
+
+/* AI 보고서 관련 스타일 */
+.refresh-btn {
+  background: #60a5fa;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: #3b82f6;
+  transform: rotate(180deg);
+}
+
+.refresh-btn:disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.loading-message,
+.error-message,
+.empty-message {
+  background: #1f2c34;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 14px;
+}
+
+.loading-message {
+  color: #60a5fa;
+}
+
+.error-message {
+  color: #ef4444;
+}
+
+.empty-message {
+  color: #9ca3af;
+}
+
+.recommendation-text {
+  background: linear-gradient(135deg, #1f2c34 0%, #2a3f4d 100%);
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #e5e7eb;
+  white-space: pre-wrap;
+  border-left: 4px solid #60a5fa;
+}
+
+.recommendation-text strong {
+  font-weight: 700;
+  color: #3dd598;
+}
+
+.recommendation-text em {
+  font-style: italic;
+  color: #60a5fa;
+}
+
+.new-user-guide {
+  background: linear-gradient(135deg, #1f2c34 0%, #2a3f4d 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid rgba(61, 213, 152, 0.3);
+}
+
+.guide-icon {
+  margin-bottom: 1rem;
+}
+
+.guide-icon i {
+  font-size: 48px;
+  color: #3dd598;
+}
+
+.new-user-guide h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.new-user-guide > p {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.guide-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.guide-btn {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.guide-btn.primary {
+  background: linear-gradient(135deg, #3dd598, #2db87c);
+  color: #0f1e25;
+  box-shadow: 0 4px 12px rgba(61, 213, 152, 0.3);
+}
+
+.guide-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(61, 213, 152, 0.4);
+}
+
+.guide-btn i {
+  font-size: 16px;
 }
 
 </style>
