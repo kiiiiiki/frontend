@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import authService from '../services/authService'
 
 export interface UserInfo {
   fullName: string
@@ -77,23 +78,137 @@ export const useUserStore = defineStore('user', () => {
     userSettings.value.notifications = { ...userSettings.value.notifications, ...notifications }
   }
 
-  const login = (username: string, password: string) => {
-    // TODO: Implement actual authentication logic
-    console.log('Login attempt:', username)
-    isLoggedIn.value = true
-    return Promise.resolve(true)
-  }
+  const login = async (username: string, password: string) => {
+    try {
+      // 개발 환경 테스트용 임시 로그인 (백엔드 없이 테스트 가능)
+      const DEV_TEST_MODE = false // 백엔드 연동 완료
 
-  const logout = () => {
-    isLoggedIn.value = false
-    userInfo.value = {
-      fullName: '',
-      username: '',
-      phone: '',
-      email: '',
-      avatar: ''
+      if (DEV_TEST_MODE) {
+        // 테스트 계정: test / test123
+        if (username === 'test' && password === 'test123') {
+          isLoggedIn.value = true
+          userInfo.value.username = username
+          userInfo.value.fullName = 'Test User'
+          // 임시 토큰 저장
+          localStorage.setItem('jwt_token', 'dev_test_token_' + Date.now())
+          console.log('🧪 개발 모드: 테스트 로그인 성공')
+          return true
+        } else {
+          console.log('🧪 개발 모드: 테스트 계정 - ID: test, PW: test123')
+          return false
+        }
+      }
+
+      // 프로덕션: 백엔드 API 호출
+      // BCrypt 검증을 위해 평문 비밀번호를 전송 (HTTPS 사용 시 안전)
+      const response = await authService.login(username, password)
+
+      if (response.token) {
+        isLoggedIn.value = true
+        userInfo.value.username = username
+        return true
+      }
+      return false
+    } catch (error) {
+      console.error('Login failed:', error)
+      return false
     }
   }
+
+  const logout = async () => {
+    try {
+      await authService.logout()
+    } catch (error) {
+      console.error('Logout failed:', error)
+    } finally {
+      isLoggedIn.value = false
+      userInfo.value = {
+        fullName: '',
+        username: '',
+        phone: '',
+        email: '',
+        avatar: ''
+      }
+    }
+  }
+
+  // 회원가입 관련 함수들
+  const registrationId = ref<string>('')
+
+  const startRegister = async (language: string) => {
+    try {
+      // Clear any existing token before starting registration
+      localStorage.removeItem('jwt_token')
+
+      const response = await authService.startRegister(language)
+      registrationId.value = response.registrationId
+      return response
+    } catch (error) {
+      console.error('Start register failed:', error)
+      throw error
+    }
+  }
+
+  const saveConsents = async (consents: {
+    consentHealth: boolean
+    consentFinance: boolean
+    consentSocial: boolean
+    consentClp: boolean
+  }) => {
+    try {
+      await authService.saveConsents({
+        registrationId: registrationId.value,
+        ...consents
+      })
+    } catch (error) {
+      console.error('Save consents failed:', error)
+      throw error
+    }
+  }
+
+  const saveProfile = async (name: string, nickname: string) => {
+    try {
+      await authService.saveProfile({
+        registrationId: registrationId.value,
+        name,
+        nickname
+      })
+      userInfo.value.fullName = name
+      userInfo.value.username = nickname
+    } catch (error) {
+      console.error('Save profile failed:', error)
+      throw error
+    }
+  }
+
+  const finalizeRegistration = async (userid: string, password: string, issueToken: boolean = true) => {
+    try {
+      // BCrypt 해싱을 위해 평문 비밀번호를 전송 (HTTPS 사용 시 안전)
+      const response = await authService.finalizeRegistration({
+        registrationId: registrationId.value,
+        userid,
+        passwordHash: password, // 필드명은 passwordHash지만 평문 전송
+        issueToken
+      })
+
+      if (response.token) {
+        isLoggedIn.value = true
+        userInfo.value.username = userid
+      }
+
+      return response
+    } catch (error) {
+      console.error('Finalize registration failed:', error)
+      throw error
+    }
+  }
+
+  // 초기화 시 토큰 확인
+  const checkAuth = () => {
+    isLoggedIn.value = authService.isAuthenticated()
+  }
+
+  checkAuth()
 
   const setLanguage = (language: string) => {
     userSettings.value.selectedLanguage = language
@@ -104,11 +219,12 @@ export const useUserStore = defineStore('user', () => {
     userInfo,
     userSettings,
     isLoggedIn,
-    
+    registrationId,
+
     // Getters
     displayName,
     isProfileComplete,
-    
+
     // Actions
     updateUserInfo,
     updateSettings,
@@ -116,6 +232,13 @@ export const useUserStore = defineStore('user', () => {
     updateNotifications,
     login,
     logout,
-    setLanguage
+    setLanguage,
+    checkAuth,
+
+    // Registration
+    startRegister,
+    saveConsents,
+    saveProfile,
+    finalizeRegistration
   }
 })
